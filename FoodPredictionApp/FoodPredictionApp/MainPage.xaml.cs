@@ -1,4 +1,5 @@
-﻿using Plugin.Media;
+﻿using Microsoft.Azure.CognitiveServices.Vision.CustomVision.Prediction;
+using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,7 @@ namespace FoodPredictionApp
 
                 activityIndicator.IsVisible = true;
                 stream = file.GetStream();
+                await IdentifyFood(stream);
                 activityIndicator.IsVisible = false;
 
                 image.Source = ImageSource.FromStream(() =>
@@ -74,6 +76,7 @@ namespace FoodPredictionApp
 
             activityIndicator.IsVisible = true;
             stream = file.GetStream();
+            await IdentifyFood(stream);
             activityIndicator.IsVisible = false;
 
             image.Source = ImageSource.FromStream(() =>
@@ -86,7 +89,23 @@ namespace FoodPredictionApp
 
         public async Task IdentifyFood(Stream image)
         {
-                
+            string predictionKey = "4a6f15ad57c941b1b72e215f6f69c410";
+            string endpoint = "https://southeastasia.api.cognitive.microsoft.com/";
+            Guid projectId = new Guid("5add8d84-ecc6-4782-bd74-5ffbf24abf8a");
+            string modelName = "Published";
+
+            CustomVisionPredictionClient client = new CustomVisionPredictionClient()
+            {
+                ApiKey = predictionKey,
+                Endpoint = endpoint
+            };
+
+
+            var result = await client.ClassifyImageAsync(projectId, modelName, image);
+
+            var firstPrediction = result.Predictions.FirstOrDefault();
+
+            resultText.Text = $"{(firstPrediction.Probability * 100).ToString("0.##")}% {firstPrediction.TagName}";
         }
 
     }
