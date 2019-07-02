@@ -89,10 +89,10 @@ namespace FoodPredictionApp
 
         public async Task IdentifyFood(Stream image)
         {
-            string predictionKey = "4a6f15ad57c941b1b72e215f6f69c410";
-            string endpoint = "https://southeastasia.api.cognitive.microsoft.com/";
-            Guid projectId = new Guid("5add8d84-ecc6-4782-bd74-5ffbf24abf8a");
-            string modelName = "Published";
+            string predictionKey = "";
+            string endpoint = "";
+            Guid projectId = new Guid("");
+            string modelName = "";
 
             CustomVisionPredictionClient client = new CustomVisionPredictionClient()
             {
