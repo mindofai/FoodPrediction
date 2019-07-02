@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:FoodPredictionApp"
              x:Class="FoodPredictionApp.MainPage"
-             BackgroundColor="LightGray">
+             BackgroundColor="#eabe36">
     <Grid>
         <StackLayout
             Padding="10"
@@ -12,13 +12,13 @@
             <Label
                 FontSize="28"
                 HorizontalOptions="CenterAndExpand"
-                Text="Emotion App"
+                Text="What food is it?"
                 TextColor="White" />
             <Image
                 x:Name="image"
                 Margin="20,0"
                 Aspect="AspectFit"
-                BackgroundColor="LightGray"
+                BackgroundColor="#eb9a32"
                 HeightRequest="350"
                 WidthRequest="300">
                 <Image.GestureRecognizers>
@@ -29,7 +29,7 @@
                 x:Name="pickPhoto"
                 Margin="20,0"
                 Padding="20"
-                BackgroundColor="#0a3a25"
+                BackgroundColor="Black"
                 FontSize="20"
                 Text="Pick a photo"
                 TextColor="White" />
